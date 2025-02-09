@@ -3,26 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invitation 30 ans</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Popo_ourson - Invitation</title>
+    <style>
+        /* Fond bleu MSN */
+        body {
+            background: url('https://i.imgur.com/ZsM1EjH.png'); /* Fond bleu MSN */
+            background-size: cover;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Fenêtre de conversation */
+        .container {
+            width: 350px;
+            background-color: white;
+            border: 2px solid #0078D7;
+            border-radius: 5px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        /* En-tête MSN */
+        .header {
+            background-color: #0078D7;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* Zone des messages */
+        .chat-box {
+            padding: 15px;
+            min-height: 100px;
+        }
+
+        /* Style des messages */
+        .message {
+            background-color: #E1ECF7;
+            padding: 8px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            display: inline-block;
+            max-width: 80%;
+        }
+
+        /* Images des émoticônes */
+        .emoji {
+            width: 20px;
+            vertical-align: middle;
+        }
+    </style>
 </head>
 <body>
-    <div class="chat-container">
-        <div class="header">
-            <span class="status">Connecté</span>
-            <span class="username">Toi</span>
-        </div>
-        <div class="chat-box" id="chat-box">
-            <!-- Messages vont apparaître ici -->
-        </div>
-        <div class="input-box">
-            <input type="text" id="user-input" placeholder="Tape un message..." onkeydown="checkEnter(event)">
-            <button onclick="sendMessage()">Envoyer</button>
+
+    <!-- Son de notification MSN -->
+    <audio id="notification-sound" src="https://www.myinstants.com/media/sounds/msn-message.mp3" preload="auto"></audio>
+
+    <!-- Fenêtre MSN -->
+    <div class="container">
+        <div class="header">Popo_ourson (Non connecté)</div>
+        <div class="chat-box">
+            <div class="message">
+                <strong>Popo_ourson :</strong> Salut toi ! 🎉<br>  
+                Tu es invité(e) à mes 30 ans ! 🎂🥳<br>
+                Ça va être incroyable ! <img class="emoji" src="https://i.imgur.com/Jzq8XHG.gif" alt=":D">
+            </div>
         </div>
     </div>
 
-    <audio id="notification-sound" src="ding.mp3"></audio> <!-- Son de notification -->
-    
-    <script src="script.js"></script>
+    <script>
+        // Joue le son de notification au chargement
+        window.onload = function() {
+            const audio = document.getElementById('notification-sound');
+            audio.play();
+        };
+    </script>
+
 </body>
 </html>

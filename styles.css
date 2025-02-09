@@ -1,12 +1,7 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #e5e5e5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
+    background-color: #00ADEF; /* Bleu MSN */
 }
+
 
 .chat-container {
     width: 300px;

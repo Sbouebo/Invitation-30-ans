@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitation 30 ans</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="header">
+            <span class="status">Connecté</span>
+            <span class="username">Toi</span>
+        </div>
+        <div class="chat-box" id="chat-box">
+            <!-- Messages vont apparaître ici -->
+        </div>
+        <div class="input-box">
+            <input type="text" id="user-input" placeholder="Tape un message..." onkeydown="checkEnter(event)">
+            <button onclick="sendMessage()">Envoyer</button>
+        </div>
+    </div>
+
+    <audio id="notification-sound" src="ding.mp3"></audio> <!-- Son de notification -->
+    
+    <script src="script.js"></script>
+</body>
+</html>

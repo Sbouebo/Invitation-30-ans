@@ -40,17 +40,32 @@
         <p>📩 Vous avez un nouveau message !</p>
         <button onclick="playSoundAndRedirect()">Ouvrir</button>
     </div>
+
     <script>
         function playSoundAndRedirect() {
-            const audio = new Audio('son-notification.mp3'); // Remplace 'son-notification.mp3' par le bon fichier
-            audio.play().then(() => {
-                setTimeout(() => {
-                    location.href = 'msn.html';
-                }, 500);
-            }).catch(error => {
-                console.log("Lecture du son bloquée :", error);
-                location.href = 'msn.html'; // Redirige même si le son est bloqué
+            const audio = new Audio('son-notification.mp3'); 
+
+            // Essayer de jouer l'audio, si bloqué, utiliser AudioContext
+            audio.play().catch(error => {
+                console.log("Lecture bloquée, tentative avec AudioContext");
+                
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const source = audioContext.createBufferSource();
+                fetch('son-notification.mp3')
+                    .then(response => response.arrayBuffer())
+                    .then(data => audioContext.decodeAudioData(data))
+                    .then(buffer => {
+                        source.buffer = buffer;
+                        source.connect(audioContext.destination);
+                        source.start(0);
+                    })
+                    .catch(err => console.error("Erreur audio:", err));
             });
+
+            // Redirection après 500ms
+            setTimeout(() => {
+                location.href = 'msn.html';
+            }, 500);
         }
     </script>
 </body>

@@ -42,11 +42,15 @@
     </div>
     <script>
         function playSoundAndRedirect() {
-            const audio = new Audio('son2.mp3'); // Remplace 'son-notification.mp3' par le bon fichier
-            audio.play();
-            setTimeout(() => {
-                location.href = 'msn.html';
-            }, 500); // Laisse le temps au son de se jouer
+            const audio = new Audio('son-notification.mp3'); // Remplace 'son-notification.mp3' par le bon fichier
+            audio.play().then(() => {
+                setTimeout(() => {
+                    location.href = 'msn.html';
+                }, 500);
+            }).catch(error => {
+                console.log("Lecture du son bloquée :", error);
+                location.href = 'msn.html'; // Redirige même si le son est bloqué
+            });
         }
     </script>
 </body>

@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Popo_ourson - MSN Invitation</title>
     <style>
-        /* Fond rétro avec image */
         body {
-            background: #c5c8c9; /* Gris rétro comme fond de secours */
+            background: #c5c8c9;
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -15,12 +14,10 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-image: url('background-image.jpg'); /* Remplace "background-image.jpg" par le nom de ton image */
+            background-image: url('background-image.jpg');
             background-size: cover;
             background-position: center;
         }
-
-        /* Fenêtre MSN */
         .msn-window {
             width: 450px;
             background: white;
@@ -30,8 +27,6 @@
             overflow: hidden;
             position: relative;
         }
-
-        /* En-tête MSN */
         .header {
             background: #0078D7;
             color: white;
@@ -42,22 +37,17 @@
             font-weight: bold;
             position: relative;
         }
-
-        /* Logo MSN */
         .msn-logo {
             position: absolute;
             left: 10px;
             top: 5px;
             width: 40px;
         }
-
-        /* Avatar et pseudo */
         .user-info {
             display: flex;
             align-items: center;
             margin-left: 50px;
         }
-
         .avatar {
             width: 30px;
             height: 30px;
@@ -65,13 +55,11 @@
             margin-right: 10px;
             overflow: hidden;
         }
-
         .avatar img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-
         .status {
             width: 10px;
             height: 10px;
@@ -80,20 +68,16 @@
             display: inline-block;
             margin-left: 5px;
         }
-
-        /* Zone de chat */
         .chat-box {
             padding: 15px;
             min-height: 200px;
             background: #E1ECF7;
         }
-
         .message-container {
             display: flex;
             align-items: flex-start;
             margin-bottom: 10px;
         }
-
         .message {
             background: white;
             padding: 10px;
@@ -102,117 +86,55 @@
             max-width: 75%;
             box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
         }
-
-        /* Barre de saisie */
-        .input-box {
-            display: flex;
-            padding: 10px;
-            background: #F1F1F1;
-            border-top: 1px solid #ccc;
-        }
-
-        .input-box input {
-            flex: 1;
-            padding: 8px;
-            border: none;
-            outline: none;
-            border-radius: 3px;
-        }
-
-        .input-box button {
-            margin-left: 10px;
-            padding: 8px;
-            background: #0078D7;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 3px;
-        }
-
-        /* Bouton Wizz */
-        .wizz-btn {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            border: none;
-            background: #0078D7;
-            color: white;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            text-align: center;
-            border-top: 1px solid #ccc;
-        }
-
-        .wizz-btn:hover {
-            background: #005A9E;
-        }
     </style>
 </head>
 <body>
-
-    <!-- Fenêtre MSN -->
     <div class="msn-window">
         <div class="header">
-            <!-- Ajout du logo MSN -->
             <img class="msn-logo" src="msn-logo.png" alt="MSN Logo">
             <div class="user-info">
-                <!-- Avatar avec image personnalisée -->
                 <div class="avatar">
-                    <img src="moi.jpeg" alt="Avatar de Popo_ourson"> <!-- Remplacer 'moi.jpeg' par le nom correct de ton fichier -->
+                    <img src="moi.jpeg" alt="Avatar de Popo_ourson">
                 </div>
                 Popo_ourson <span class="status"></span>
             </div>
             <span>En ligne</span>
         </div>
-        <div class="chat-box">
-            <div class="message-container">
-                <div class="avatar">
-                    <img src="moi.jpeg" alt="Avatar de Popo_ourson">
-                </div>
-                <div class="message">
-                    <strong>Popo_ourson :</strong> Salut toi ! 🎉<br>  
-                    Tu es invité(e) à mes 30 ans ! 🎂🥳<br>
-                    Ça va être incroyable ! 😄
-                </div>
-            </div>
-        </div>
-        
-        <!-- Barre de saisie -->
-        <div class="input-box">
-            <input type="text" placeholder="Écrivez un message..." disabled>
-            <button disabled>Envoyer</button>
-        </div>
-
-        <!-- Bouton Wizz -->
-        <button class="wizz-btn" onclick="sendWizz()">Envoyer un Wizz !</button>
+        <div class="chat-box"></div>
     </div>
 
     <script>
-        // Jouer le son dès l'ouverture de la page
         window.onload = function() {
-            const audio = new Audio('son2.mp3'); // Remplace 'Invitation 30ans/son1.mp3' par le chemin correct
+            const audio = new Audio('Invitation 30ans/son1.mp3');
             audio.play();
+            
+            const messages = [
+                "🎉 SâaLuûüut twûüa!! Savaâ? 🎂",
+                "🎈 Ça y est, nous y voilà… mon tour est arrivé. Mes cheveux gris et moi t’invitons à fêter la fin de ma vingtaine le 9 août 2025 à Tourrettes-sur-Loup. 🎊",
+                "🎁 Pour lutter contre la nostalgie de mes 10 ans, je te laisse cliquer sur <a href='https://www.exemple.com' target='_blank'>ce lien</a> pour découvrir la suite de l’événement! @+ 🎂"
+            ];
+            
+            const chatBox = document.querySelector('.chat-box');
+            
+            messages.forEach((text, index) => {
+                setTimeout(() => {
+                    const messageContainer = document.createElement('div');
+                    messageContainer.classList.add('message-container');
+                    
+                    const avatar = document.createElement('div');
+                    avatar.classList.add('avatar');
+                    avatar.innerHTML = "<img src='moi.jpeg' alt='Avatar de Popo_ourson'>";
+                    
+                    const message = document.createElement('div');
+                    message.classList.add('message');
+                    message.innerHTML = `<strong>Popo_ourson :</strong> ${text}`;
+                    
+                    messageContainer.appendChild(avatar);
+                    messageContainer.appendChild(message);
+                    chatBox.appendChild(messageContainer);
+                }, index * 1000);
+            });
         };
-
-        function sendWizz() {
-            // Vibration au Wizz
-            if (navigator.vibrate) {
-                navigator.vibrate([200, 100, 200]); // Vibration courte
-            }
-
-            const wizzSound = new Audio('https://www.myinstants.com/media/sounds/msn-wizz.mp3');
-            wizzSound.play();
-
-            // Faire vibrer la fenêtre
-            const msnWindow = document.querySelector('.msn-window');
-            msnWindow.style.transition = 'transform 0.1s';
-            msnWindow.style.transform = 'scale(1.05)';
-            setTimeout(() => {
-                msnWindow.style.transform = 'scale(1)';
-            }, 100);
-        }
     </script>
-
 </body>
 </html>

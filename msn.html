@@ -86,6 +86,22 @@
             max-width: 75%;
             box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
         }
+        .wizz-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background: #0078D7;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            border-top: 1px solid #ccc;
+        }
+        .wizz-btn:hover {
+            background: #005A9E;
+        }
     </style>
 </head>
 <body>
@@ -101,11 +117,11 @@
             <span>En ligne</span>
         </div>
         <div class="chat-box"></div>
+        <button class="wizz-btn" onclick="sendWizz()">Envoyer un Wizz !</button>
     </div>
-
     <script>
         window.onload = function() {
-            const audio = new Audio('son.mp3');
+            const audio = new Audio('Invitation 30ans/son1.mp3');
             audio.play();
             
             const messages = [
@@ -135,6 +151,13 @@
                 }, index * 1000);
             });
         };
+        function sendWizz() {
+            if (navigator.vibrate) {
+                navigator.vibrate([200, 100, 200]);
+            }
+            const wizzSound = new Audio('https://www.myinstants.com/media/sounds/msn-wizz.mp3');
+            wizzSound.play();
+        }
     </script>
 </body>
 </html>

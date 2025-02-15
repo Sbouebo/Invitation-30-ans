@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nouveau Message</title>
+    <style>
+        body {
+            background: #c5c8c9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        .message-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        .message-box button {
+            background: #0078D7;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .message-box button:hover {
+            background: #005A9E;
+        }
+    </style>
+</head>
+<body>
+    <div class="message-box">
+        <p>📩 Vous avez un nouveau message !</p>
+        <button onclick="playSoundAndRedirect()">Ouvrir</button>
+    </div>
+    <script>
+        function playSoundAndRedirect() {
+            const audio = new Audio('son-notification.mp3'); // Remplace 'son-notification.mp3' par le bon fichier
+            audio.play();
+            setTimeout(() => {
+                location.href = 'msn.html';
+            }, 500); // Laisse le temps au son de se jouer
+        }
+    </script>
+</body>
+</html>

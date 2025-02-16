@@ -119,38 +119,64 @@
         <div class="chat-box"></div>
         <button class="wizz-btn" onclick="sendWizz()">Envoyer un Wizz !</button>
     </div>
+
+    <!-- Élément audio caché pour la notification -->
+    <audio id="notification-sound" src="son-notification.mp3" preload="auto"></audio>
+
     <script>
         window.onload = function() {
-            const audio = new Audio('Invitation 30ans/son.mp3');
-            audio.play();
-            
+            const audio = document.getElementById('son');
+
+            // Ajouter une vidéo muette cachée pour débloquer l'autoplay
+            const video = document.createElement('video');
+            video.muted = true;
+            video.autoplay = true;
+            video.style.display = "none";
+            document.body.appendChild(video);
+
+            // Essayer de jouer le son immédiatement
+            audio.play().then(() => {
+                console.log("🔊 Son joué avec succès !");
+            }).catch(error => {
+                console.log("🔇 Autoplay bloqué. Nouvelle tentative...");
+
+                // Activer le son après un clic utilisateur si nécessaire
+                document.addEventListener("click", function playOnClick() {
+                    audio.play();
+                    document.removeEventListener("click", playOnClick);
+                });
+            });
+
+            // Messages qui apparaissent dans la fenêtre MSN
             const messages = [
                 "🎉 SâaLuûüut twûüa!! Savaâ? 🎂",
                 "🎈 Ça y est, nous y voilà… mon tour est arrivé. Mes cheveux gris et moi t’invitons à fêter la fin de ma vingtaine le 9 août 2025 à Tourrettes-sur-Loup. 🎊",
                 "🎁 Pour lutter contre la nostalgie de mes 10 ans, je te laisse cliquer sur <a href='https://www.exemple.com' target='_blank'>ce lien</a> pour découvrir la suite de l’événement! @+ 🎂"
             ];
-            
+
             const chatBox = document.querySelector('.chat-box');
-            
+
             messages.forEach((text, index) => {
                 setTimeout(() => {
                     const messageContainer = document.createElement('div');
                     messageContainer.classList.add('message-container');
-                    
+
                     const avatar = document.createElement('div');
                     avatar.classList.add('avatar');
                     avatar.innerHTML = "<img src='moi.jpeg' alt='Avatar de Popo_ourson'>";
-                    
+
                     const message = document.createElement('div');
                     message.classList.add('message');
                     message.innerHTML = `<strong>Popo_ourson :</strong> ${text}`;
-                    
+
                     messageContainer.appendChild(avatar);
                     messageContainer.appendChild(message);
                     chatBox.appendChild(messageContainer);
                 }, index * 1000);
             });
         };
+
+        // Fonction Wizz (vibration + son)
         function sendWizz() {
             if (navigator.vibrate) {
                 navigator.vibrate([200, 100, 200]);

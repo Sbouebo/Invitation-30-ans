@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popo_ourson - MSN Invitation</title>
+    <style>
+        body {
+            background: #c5c8c9;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('background-image.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .msn-window {
+            width: 450px;
+            background: white;
+            border: 3px solid #0078D7;
+            border-radius: 5px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            position: relative;
+        }
+        .header {
+            background: #0078D7;
+            color: white;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: bold;
+            position: relative;
+        }
+        .msn-logo {
+            position: absolute;
+            left: 10px;
+            top: 5px;
+            width: 40px;
+        }
+        .user-info {
+            display: flex;
+            align-items: center;
+            margin-left: 50px;
+        }
+        .avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+            overflow: hidden;
+        }
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .status {
+            width: 10px;
+            height: 10px;
+            background: limegreen;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 5px;
+        }
+        .chat-box {
+            padding: 15px;
+            min-height: 200px;
+            background: #E1ECF7;
+            display: none;
+            overflow-y: auto;
+            max-height: 300px;
+        }
+        .message-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .message-container .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 10px;
+        }
+        .message-container .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .message {
+            background: #DCF8C6;
+            padding: 10px;
+            border-radius: 15px;
+            max-width: 70%;
+            position: relative;
+            font-size: 14px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .message::before {
+            content: "";
+            position: absolute;
+            top: 10px;
+            left: -10px;
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-right: 10px solid #DCF8C6;
+            border-bottom: 10px solid transparent;
+        }
+        .new-message-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background: #FFD700;
+            color: black;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            border-bottom: 1px solid #ccc;
+            border-radius: 0;
+        }
+        .new-message-btn:hover {
+            background: #FFC107;
+        }
+        .wizz-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background: #0078D7;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            border-top: 1px solid #ccc;
+        }
+        .wizz-btn:hover {
+            background: #005A9E;
+        }
+    </style>
+</head>
+<body>
+    <div class="msn-window">
+        <div class="header">
+            <img class="msn-logo" src="msn-logo.png" alt="MSN Logo">
+            <div class="user-info">
+                <div class="avatar">
+                    <img src="moi.jpeg" alt="Avatar de Popo_ourson">
+                </div>
+                Popo_ourson <span class="status"></span>
+            </div>
+            <span>En ligne</span>
+        </div>
+        <button class="new-message-btn" onclick="showMessages()">Vous avez des nouveaux messages</button>
+        <div class="chat-box"></div>
+        <button class="wizz-btn" onclick="sendWizz()">Envoyer un Wizz !</button>
+    </div>
+    <script>
+        function showMessages() {
+            const chatBox = document.querySelector('.chat-box');
+            const button = document.querySelector('.new-message-btn');
+            const audio = new Audio('son.mp3');
+            button.style.display = 'none';
+            chatBox.style.display = 'block';
+            audio.play();
+            
+            const messages = [
+                "🎉 SâaLuûüut twûüa!! Savaâ? 🎂",
+                "🎈 Ça y est, nous y voilà… mon tour est arrivé. Mes cheveux gris et moi t’invitons à fêter la fin de ma vingtaine le 9 août 2025 à Tourrettes-sur-Loup. 🎊",
+                "🎁 Pour lutter contre la nostalgie de mes 10 ans, je te laisse cliquer sur <a href='https://partiful.com/e/P0rjowMTJwfrfzk3qf9M?fbclid=IwY2xjawIe6TBleHRuA2FlbQIxMAABHUBeUgSXchjh3KSIRHdJgTIEzem0pniXXsHSCeF3zR9OOCBuMcA4RPUwTw_aem_E09WWUCrNFuFnNQT8Zh7Gw' target='_blank'>ce lien</a> pour découvrir la suite de l’événement! @+ 🎂"
+            ];
+            
+            messages.forEach((text, index) => {
+                const delay = index === 0 ? 1000 : 1000 + index * 2000;
+                setTimeout(() => {
+                    const messageContainer = document.createElement('div');
+                    messageContainer.classList.add('message-container');
+                    
+                    const avatar = document.createElement('div');
+                    avatar.classList.add('avatar');
+                    avatar.innerHTML = "<img src='moi.jpeg' alt='Avatar de Popo_ourson'>";
+                    
+                    const message = document.createElement('div');
+                    message.classList.add('message');
+                    message.innerHTML = `<strong>Popo_ourson :</strong> ${text}`;
+                    
+                    messageContainer.appendChild(avatar);
+                    messageContainer.appendChild(message);
+                    chatBox.appendChild(messageContainer);
+                }, delay);
+            });
+        }
+        function sendWizz() {
+            if (navigator.vibrate) {
+                navigator.vibrate([200, 100, 200]);
+            }
+            const wizzSound = new Audio('https://www.myinstants.com/media/sounds/msn-wizz.mp3');
+            wizzSound.play();
+        }
+    </script>
+</body>
+</html>
